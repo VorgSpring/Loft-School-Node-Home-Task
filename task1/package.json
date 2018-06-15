@@ -1,10 +1,10 @@
 {
-  "name": "nodejs",
+  "name": "task1",
   "version": "1.0.0",
-  "description": "Lost school Nodejs home work",
+  "description": "Lost school Nodejs home work, first task",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ."
   },
   "keywords": [],
   "author": "Pavlov SE",
