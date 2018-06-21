@@ -1,12 +1,9 @@
-const { Router } = require(`express`);
 const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 const db = require('../store')();
 
-const router = new Router();
-
-router.post(`/`, (req, res, next) => {
+const controller = (req, res, next) => {
   let form = new formidable.IncomingForm();
   let upload = path.join('./static', 'img', 'products');
   let fileName;
@@ -50,6 +47,6 @@ router.post(`/`, (req, res, next) => {
       res.redirect('/admin?msgfile=Картинка успешно загружена');
     })
   })
-});
+};
 
-module.exports = router;
+module.exports = controller;

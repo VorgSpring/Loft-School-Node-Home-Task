@@ -1,14 +1,7 @@
-const { Router } = require(`express`);
 const nodemailer = require('nodemailer');
-const bodyParser = require(`body-parser`);
 const config = require('../config/mail.json');
 
-const router = new Router();
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended: false}));
-
-router.post('/', (req, res, next) => {
+const controller = (req, res, next) => {
   if (!req.body.name || !req.body.email || !req.body.text) {
     return res.json({ msg: 'Все поля нужно заполнить!', status: 'Error' });
   }
@@ -27,6 +20,6 @@ router.post('/', (req, res, next) => {
     }
     res.json({ msg: 'Письмо успешно отправлено!', status: 'Ok' });
   });
-});
+}
 
-module.exports = router;
+module.exports = controller;

@@ -2,12 +2,7 @@ const express = require(`express`);
 const path = require('path');
 const session = require('express-session');
 
-const pageRouter = require(`./router/page`);
-const mailRouter = require(`./router/mail`);
-const loginRouter = require(`./router/login`);
-const productsRouter = require(`./router/products`);
-const skillsRouter = require(`./router/skills`);
-const adminRouter = require(`./router/admin`);
+const router = require(`./router`);
 
 const app = express();
 
@@ -42,12 +37,7 @@ app.use(express.static(`server/static`));
 app.set('views', 'client/template/pages');
 app.set('view engine', 'pug');
 
-app.use(`/`, pageRouter);
-app.use(`/mail`, mailRouter);
-app.use(`/login`, loginRouter);
-app.use(`/admin`, adminRouter);
-app.use(`/products`, productsRouter);
-app.use(`/skills`, skillsRouter);
+app.use(`/`, router);
 
 app.get(`*`, (_, res) => {
   res.status(404);

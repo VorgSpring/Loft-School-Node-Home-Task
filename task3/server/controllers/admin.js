@@ -1,9 +1,6 @@
-const { Router } = require(`express`);
 const db = require('../store')();
 
-const router = new Router();
-
-router.get(`/`, (req, res, next) => {
+const controller =  (req, res, next) => {
   if (req.session.isAdmin) {
     return res.render('admin', {
       msgfile: req.query.msgfile,
@@ -12,6 +9,6 @@ router.get(`/`, (req, res, next) => {
     });
   }
   next();
-});
+};
 
-module.exports = router;
+module.exports = controller;

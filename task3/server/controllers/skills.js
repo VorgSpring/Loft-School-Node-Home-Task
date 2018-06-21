@@ -1,15 +1,8 @@
-const { Router } = require(`express`);
-const bodyParser = require(`body-parser`);
 const db = require('../store')();
-
-const router = new Router();
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended: false}));
 
 const fildsName = ['age', 'concerts', 'cities', 'years'];
 
-router.post(`/`, (req, res) => {
+const controller = (req, res) => {
   const { age, concerts, cities, years } = req.body;
   const data = db.stores.skills.store;
   let isValid = true;
@@ -29,6 +22,6 @@ router.post(`/`, (req, res) => {
 
   db.save();
   return res.redirect('/admin/?msgskill=обновлено');
-});
+};
 
-module.exports = router;
+module.exports = controller;
