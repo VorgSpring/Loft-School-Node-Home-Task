@@ -1,11 +1,13 @@
 const express = require(`express`);
+const path = require('path');
+const session = require('express-session');
+
 const pageRouter = require(`./router/page`);
 const mailRouter = require(`./router/mail`);
 const loginRouter = require(`./router/login`);
 const productsRouter = require(`./router/products`);
 const skillsRouter = require(`./router/skills`);
-const path = require('path');
-const session = require('express-session');
+const adminRouter = require(`./router/admin`);
 
 const app = express();
 
@@ -43,6 +45,7 @@ app.set('view engine', 'pug');
 app.use(`/`, pageRouter);
 app.use(`/mail`, mailRouter);
 app.use(`/login`, loginRouter);
+app.use(`/admin`, adminRouter);
 app.use(`/products`, productsRouter);
 app.use(`/skills`, skillsRouter);
 

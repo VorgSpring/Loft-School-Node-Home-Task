@@ -11,7 +11,7 @@ router.get(`/`, (req, res) => {
   if (req.session.isAdmin) {
     return res.redirect('/admin');
   }
-  return res.render(`login`);
+  return res.render(`login`, {msgslogin: req.query.msgslogin});
 });
 
 router.post(`/`, (req, res) => {
@@ -22,8 +22,7 @@ router.post(`/`, (req, res) => {
     req.session.isAdmin = true;
     return res.redirect('/admin');
   }
-  res.status(401);
-  return res.send("HTTP 403 Forbidden");
+  return res.redirect('/login?msgslogin=неверный логин или пароль')
 });
 
 module.exports = router;
