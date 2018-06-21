@@ -35,9 +35,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(`static`));
+app.use(express.static(`server/static`));
 
-app.set('views', 'source/template/pages');
+app.set('views', 'client/template/pages');
 app.set('view engine', 'pug');
 
 app.use(`/`, pageRouter);
