@@ -6,13 +6,7 @@ const unlink = util.promisify(fs.unlink);
 const db = require('../store')();
 
 const controller = async (ctx, next) => {
-  let uploadDir = process.cwd() + "/server/static/img/products/";
-  let fileName;
-
-
   const files = ctx.request.files.photo;
-  console.log(files);
-  
   const fields = ctx.request.body;
 
   if (files.name === '' || files.size === 0) {
@@ -31,9 +25,9 @@ const controller = async (ctx, next) => {
     return ctx.redirect('/admin?msgfile=Not the price!');
   }
 
-  fileName = path.join(uploadDir, files.name);
+  let fileName = path.join(process.cwd(), "/server/static/img/products/", files.name);
   const error = await rename(files.path, fileName);
-  if(error) {
+  if (error) {
     await unlink(fileName);
     await rename(files.path, fileName);
   }
@@ -44,6 +38,7 @@ const controller = async (ctx, next) => {
     'src': dir
   });
   db.save();
+
   ctx.redirect('/admin?msgfile=The picture is successfully loaded');
 };
 
