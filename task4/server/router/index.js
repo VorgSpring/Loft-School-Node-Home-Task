@@ -24,10 +24,7 @@ router.post('/skills', koaBody(), skillsController);
 router.get('/admin', adminController);
 
 router.get('*', async (ctx, next) => {
-  ctx.render('error', {
-    status: ctx.response.status,
-    error: ctx.response.message
-  });
+  ctx.render('error');
 });
 
 module.exports = router;
