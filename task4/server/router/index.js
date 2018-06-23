@@ -1,0 +1,74 @@
+const Router = require('koa-router');
+const koaBody = require('koa-body');
+
+const pageController = require('../controllers/page');
+const mailController = require('../controllers/mail');
+const loginController = require('../controllers/login');
+const adminController = require('../controllers/admin');
+const productsController = require('../controllers/products');
+const skillsController = require('../controllers/skills');
+
+const router = new Router();
+
+router.get('/', pageController);
+router.post('/mail', koaBody(), mailController);
+router.get('/login', loginController.get);
+router.post('/login', koaBody(), loginController.post);
+router.post('/products', koaBody({
+  formidable: {
+    uploadDir: process.cwd() + "/server/static/img/products/"
+  },
+  multipart: true,
+  urlencoded: true
+}), productsController);
+router.post('/skills', koaBody(), skillsController);
+router.get('/admin', adminController);
+
+router.get('*', async (ctx, next) => {
+  ctx.render('error', {
+    status: ctx.response.status,
+    error: ctx.response.message
+  });
+})
+
+// router.get('/work', controllers.myWorks)
+// router.post('/work', koaBody({
+//   multipart: true,
+//   formidable: {
+//     uploadDir: process.cwd() + "/public/upload"
+//   }
+// }), controllers.uploadWork)
+
+// router.get('/contact-me', controllers.contactMe)
+// router.get('/login', controllers.login)
+// router.post('/login', koaBody(), controllers.auth)
+
+// router.get('*', async(ctx, next) => {
+//   ctx.render('error', {
+//     status: ctx.response.status,
+//     error: ctx.response.message
+//   });
+// })
+
+module.exports = router;
+
+// const { Router } = require(`express`);
+// const bodyParser = require(`body-parser`);
+// const db = require('../store')();
+
+
+
+// const router = new Router();
+
+// const jsonParser = bodyParser.json();
+// const urlencodedParser = bodyParser.urlencoded({extended: false});
+
+// router.get(`/`, pageController);
+// router.post(`/mail`, jsonParser, urlencodedParser, mailController);
+// router.get(`/login`, loginController.get);
+// router.post(`/login`, jsonParser, urlencodedParser, loginController.post);
+// router.post(`/products`, productsController);
+// router.post(`/skills`, jsonParser, urlencodedParser, skillsController);
+// router.get(`/admin`, adminController);
+
+// module.exports = router;
