@@ -14,9 +14,8 @@ const pug = new Pug({
   app: app 
 });
 
-app.use(static('server/static'));
-
 app
+  .use(static('server/static'))
   .use(session({
     "key": "key",
     "maxAge": "session",
