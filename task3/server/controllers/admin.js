@@ -1,6 +1,6 @@
 const db = require('../store')();
 
-const controller =  (req, res, next) => {
+const controller = (req, res, next) => {
   if (req.session.isAdmin) {
     return res.render('admin', {
       msgfile: req.query.msgfile,

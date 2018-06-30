@@ -1,0 +1,23 @@
+{
+  "name": "builder",
+  "version": "0.0.1",
+  "author": "krabaton",
+  "license": "ISC",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "formidable": "^1.2.1",
+    "jquery": "^3.3.1",
+    "koa": "^2.5.1",
+    "koa-body": "^4.0.3",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.1",
+    "koa-static": "^5.0.0",
+    "nconf": "^0.10.0",
+    "nodemailer": "^4.6.7",
+    "normalize.css": "^7.0.0",
+    "pug": "^2.0.3"
+  }
+}

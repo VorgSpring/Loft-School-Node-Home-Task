@@ -3,7 +3,7 @@ const config = require('../config/mail.json');
 
 const controller = (req, res, next) => {
   if (!req.body.name || !req.body.email || !req.body.text) {
-    return res.json({ msg: 'Все поля нужно заполнить!', status: 'Error' });
+    res.redirect('/?msgemail=Все поля нужно заполнить!');
   }
   const transporter = nodemailer.createTransport(config.mail.smtp);
   const mailOptions = {
@@ -16,9 +16,9 @@ const controller = (req, res, next) => {
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      return res.json({ msg: `При отправке письма произошла ошибка!: ${error}`, status: 'Error' });
+      res.redirect('/?msgemail=При отправке письма произошла ошибка!');
     }
-    res.json({ msg: 'Письмо успешно отправлено!', status: 'Ok' });
+    res.redirect('/?msgemail=Письмо успешно отправлено!');
   });
 }
 
