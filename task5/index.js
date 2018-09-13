@@ -1,4 +1,5 @@
 const express = require(`express`);
+const logger = require(`./logger/`);
 
 const app = express();
 
@@ -13,5 +14,5 @@ const PORT = process.env.SERVER_PORT || 3000;
 const SERVER_INFO_MESSAGE = `Server running at http://${HOSTNAME}:${PORT}/`;
 
 app.listen(PORT, HOSTNAME, () => {
-  console.log(SERVER_INFO_MESSAGE);
+  logger.info(SERVER_INFO_MESSAGE);
 });
